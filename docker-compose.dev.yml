@@ -1,0 +1,35 @@
+# 개발환경용 Docker Compose 오버라이드
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/app
+      - ./uploads:/app/uploads
+    environment:
+      - DEBUG=True
+      - ENVIRONMENT=development
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --log-level debug
+    
+  db:
+    # 개발환경에서는 데이터 영속성 보장
+    volumes:
+      - ./database/data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    
+  # 개발용 Redis Commander (Redis 관리 도구)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: sinabro_redis_commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    networks:
+      - sinabro_network
+    restart: unless-stopped
