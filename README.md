@@ -138,13 +138,13 @@ pytest tests/test_checklists.py
 
 ## 👨‍💻 개발팀
 
-- **Backend Developer**: [개발자명]
+- **Backend Developer**: [김동년]
 - **Project Manager**: [PM명]
 
 ## 📞 연락처
 
-프로젝트 문의: [your-email@example.com]
-프로젝트 링크: [https://github.com/yourusername/sinabro]
+프로젝트 문의: [qwert884@naver.com]
+프로젝트 링크: [https://github.com/jhon829/sinabro]
 
 ---
 
